@@ -117,7 +117,8 @@ public class AddDataPage extends JFrame {
 		JButton button = new JButton("Return");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Main.SwitchWindows(1);
+	            setVisible(false);
 				//back to defaultPage
 				
 			}
@@ -129,7 +130,8 @@ public class AddDataPage extends JFrame {
 		JButton button_1 = new JButton("Logout");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Main.SwitchWindows(0);
+	            setVisible(false);
 				//Back to Login
 				
 			}

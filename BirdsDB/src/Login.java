@@ -28,22 +28,12 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	private JPasswordField passwordField;
-	private boolean loggedIn;
 	private JButton btnCreateNewLogin;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		
 	}
 
 	/**
@@ -51,7 +41,7 @@ public class Login extends JFrame {
 	 */
 
 	public Login() {
-		loggedIn = false;
+		Main.loggedIn = false;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -78,6 +68,9 @@ public class Login extends JFrame {
 				if(txtUsername.getText().length() ==0 /*&& passwordField.getPassword().length() == 0 */){
 		            JOptionPane.showMessageDialog(null, "Continuing without login");
 		            //switch to main window, with loggedIn = true
+		            Main.SwitchWindows(1);
+		            
+		            setVisible(false);
 		        }
 		        String userName = txtUsername.getText();
 			char[] pWord = passwordField.getPassword();
@@ -85,8 +78,10 @@ public class Login extends JFrame {
 
 		        if(CheckLogin(userName, pWordArr)){
 		            JOptionPane.showMessageDialog(null, "Login Success!");
-		            loggedIn = true;
+		            Main.loggedIn = true;
 		            //change to main window
+		            Main.SwitchWindows(1);
+		            setVisible(false);
 		        } else {
 		            JOptionPane.showMessageDialog(null, "Login unsuccessful.");
 		        }
@@ -105,6 +100,8 @@ public class Login extends JFrame {
 				
 				JOptionPane.showMessageDialog(null, "Continuing without login");
 				//Change to main window (loggedIn = false)
+				Main.SwitchWindows(1);
+	            setVisible(false);
 				
 			}
 		});
@@ -116,7 +113,8 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				//change to NewLogin
-				
+				Main.SwitchWindows(5);
+	            setVisible(false);
 			}
 		});
 		btnCreateNewLogin.setBounds(138, 159, 131, 25);
@@ -138,6 +136,11 @@ public class Login extends JFrame {
             state.setString(1, uName); //these replace the "?" in the prepared statement
             state.setString(2, pWord);
             ResultSet result = state.executeQuery(); //executes the prepared statement
+            
+            PreparedStatement retrieve = connect.prepareStatement("SELECT id_user FROM user WHERE username=?");
+            state.setString(1, uName);
+            
+            Main.userID = retrieve.executeQuery().getInt(0); //CHECK IF THIS WORKS
             
             if(result.next()){
                 return true;

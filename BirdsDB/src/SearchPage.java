@@ -85,6 +85,8 @@ public class SearchPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				//return to login
+				Main.SwitchWindows(0);
+	            setVisible(false);
 				
 			}
 		});
@@ -109,6 +111,8 @@ public class SearchPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				//return to default page
+				Main.SwitchWindows(1);
+	            setVisible(false);
 				
 			}
 		});
