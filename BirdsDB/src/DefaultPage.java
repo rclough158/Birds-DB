@@ -53,6 +53,13 @@ public class DefaultPage extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Main.SwitchWindows(0);
+	            setVisible(false);
+				
+			}
+		});
 		btnLogout.setBounds(317, 5, 87, 31);
 		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		contentPane.add(btnLogout);
@@ -62,6 +69,8 @@ public class DefaultPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				//go to search window
+				Main.SwitchWindows(2);
+	            setVisible(false);
 				
 			}
 		});
@@ -75,6 +84,9 @@ public class DefaultPage extends JFrame {
 				
 				//only if LoggedIn = true
 				//go to Add Data Window
+				Main.SwitchWindows(4);
+	            setVisible(false);
+				
 				
 				//else
 				JOptionPane.showMessageDialog(null, "Unavailable without login");
@@ -91,6 +103,8 @@ public class DefaultPage extends JFrame {
 				
 				//only if LoggedIn = true
 				//Go to favorites window
+				Main.SwitchWindows(3);
+	            setVisible(false);
 				
 				//else
 				JOptionPane.showMessageDialog(null, "Unavailable without login");
