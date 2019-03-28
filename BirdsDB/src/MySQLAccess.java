@@ -23,7 +23,7 @@ public class MySQLAccess {
 	      
 	      // Setup the connection with the DB
 	      connect = DriverManager
-	          .getConnection("jdbc:mysql://" + host + "/birdwatcheruser?"
+	          .getConnection("jdbc:mysql://" + host + "/birdwatchers?"
 	              + "user=" + user + "&password=" + passwd );
 
 	      // Statements allow to issue SQL queries to the database
@@ -36,10 +36,10 @@ public class MySQLAccess {
 	      // PreparedStatements can use variables and are more efficient
 
 
-	      preparedStatement = connect
-	          .prepareStatement("SELECT username from birdwatcheruser.user");
+	      /*preparedStatement = connect
+	          .prepareStatement("SELECT username from birdwatchers.users");
 	      resultSet = preparedStatement.executeQuery();
-	      writeResultSet(resultSet);
+	      writeResultSet(resultSet); */
 
 	      
 	    } catch (Exception e) {

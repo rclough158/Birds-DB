@@ -83,12 +83,11 @@ public class NewLogin extends JFrame {
 				if(CheckUN(userName) && CheckPW(pWordArr, pWordConfArr)) {
 					try{
 						Class.forName("com.mysql.cj.jdbc.Driver");
-			            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatcheruser", "javaUser", "newerPassword");
-			            //"birdwatcheruser" is the database name, "javauser" is your 
-			            //mysql user (root is the base), "newerPassword" is your mysql password
+			            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatchers", Main.user, Main.passwd);
 			            
-			            PreparedStatement state = connect.prepareStatement("INSERT INTO user (username, password) VALUES (?, ?)");
-			            //"user" is my user table, with "username" and "password" as attributes
+			            
+			            PreparedStatement state = connect.prepareStatement("INSERT INTO users (user_name, user_pass) VALUES (?, ?)");
+			            
 			            state.setString(1, userName); //these replace the "?" in the prepared statement
 			            state.setString(2, pWordArr);
 			            state.executeUpdate(); //executes the prepared statement
@@ -127,11 +126,11 @@ public class NewLogin extends JFrame {
 	private boolean CheckUN(String uName){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatcheruser", "javaUser", "newerPassword");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatchers", Main.user, Main.passwd);
             //"birdwatcheruser" is the database name, "javauser" is your 
             //mysql user (root is the base), "newerPassword" is your mysql password
             
-            PreparedStatement state = connect.prepareStatement("SELECT * FROM user WHERE username=?");
+            PreparedStatement state = connect.prepareStatement("SELECT * FROM users WHERE user_name=?");
             //"user" is my user table, with "username" and "password" as attributes
             state.setString(1, uName); //these replace the "?" in the prepared statement
             ResultSet result = state.executeQuery(); //executes the prepared statement

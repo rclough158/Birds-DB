@@ -122,25 +122,27 @@ public class Login extends JFrame {
 		contentPane.add(btnCreateNewLogin);
 	}
 	
-	//This is where I access the database on MY MACHINE
-	//The Connection and PreparedStatement will need to be edited, it will NOT function on other machines in its current state
+	
 	private boolean CheckLogin(String uName, String pWord){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatcheruser", "javaUser", "newerPassword");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatchers", Main.user, Main.passwd);
             //"birdwatcheruser" is the database name, "javauser" is your 
             //mysql user (root is the base), "newerPassword" is your mysql password
             
-            PreparedStatement state = connect.prepareStatement("SELECT * FROM user WHERE username=? AND password=?");
+            PreparedStatement state = connect.prepareStatement("SELECT * FROM users WHERE user_name=? AND user_pass=?");
             //"user" is my user table, with "username" and "password" as attributes
             state.setString(1, uName); //these replace the "?" in the prepared statement
             state.setString(2, pWord);
             ResultSet result = state.executeQuery(); //executes the prepared statement
             
-            PreparedStatement retrieve = connect.prepareStatement("SELECT id_user FROM user WHERE username=?");
-            state.setString(1, uName);
+            PreparedStatement retrieve = connect.prepareStatement("SELECT id_user FROM users WHERE user_name=?");
+            retrieve.setString(1, uName);
             
-            Main.userID = retrieve.executeQuery().getInt(0); //CHECK IF THIS WORKS
+            ResultSet test = retrieve.executeQuery();
+            while (test.next()) {
+            	Main.userID = test.getInt(1); //CHECK IF THIS WORKS
+            }
             
             if(result.next()){
                 return true;

@@ -157,8 +157,16 @@ public class AddDataPage extends JFrame {
 		JButton button_2 = new JButton("Clear Fields");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//Clears all fields
+				txtSpeciesName.setText("Species Name");
+				txtActiveTime.setText("Active Time");
+				txtFemaleColor.setText("Female Color");
+				txtMalecolor.setText("Male Color");
+				txtType.setText("Type");
+				txtCommonName.setText("Common Name");
+				txtMigration.setText("Migration Time");
+				txtMalecolor.setText("Male Color");
+				txtEndangered.setText("Endangered Level");
+				txtState.setText("State");
 				
 			}
 		});

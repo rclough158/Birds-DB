@@ -11,10 +11,15 @@ public class Main {
 	static Boolean loggedIn;
 	static int userID;
 	
+	// IF YOUR MYSQL USERNAME AND PASSWORD ARE DIFFERENT, THIS IS THE ONLY PLACE YOU NEED TO CHANGE IT
+	// If you have the birdwatchers database correctly set up, everything else should work
+	static public String user = "root";
+	static public String passwd = "newPassword";
+	
 	
 	public static void main(String[] args) throws Exception {
-		MySQLAccess dao = new MySQLAccess();
-	    dao.readDataBase();
+		//MySQLAccess dao = new MySQLAccess();
+	    //dao.readDataBase();
 	    EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -38,6 +43,8 @@ public class Main {
 		
 		switch(SwitchCode) {
 		case 0:
+			loggedIn = false;
+			userID = 0;
 			frame.setVisible(true);
 			break;
 		case 1:

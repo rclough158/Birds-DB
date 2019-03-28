@@ -84,12 +84,12 @@ public class DefaultPage extends JFrame {
 				
 				//only if LoggedIn = true
 				//go to Add Data Window
-				Main.SwitchWindows(4);
-	            setVisible(false);
-				
-				
-				//else
-				JOptionPane.showMessageDialog(null, "Unavailable without login");
+				if(Main.loggedIn) {
+					Main.SwitchWindows(4);
+		            setVisible(false);
+				} else {
+					JOptionPane.showMessageDialog(null, "Unavailable without login");	
+				}
 				
 			}
 		});
@@ -101,13 +101,12 @@ public class DefaultPage extends JFrame {
 		btnFavorites.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//only if LoggedIn = true
-				//Go to favorites window
-				Main.SwitchWindows(3);
-	            setVisible(false);
-				
-				//else
-				JOptionPane.showMessageDialog(null, "Unavailable without login");
+				if(Main.loggedIn) {
+					Main.SwitchWindows(3);
+		            setVisible(false);
+				} else {
+					JOptionPane.showMessageDialog(null, "Unavailable without login");	
+				}
 				
 			}
 		});

@@ -49,6 +49,7 @@ public class SearchPage extends JFrame {
 		contentPane.setLayout(null);
 		
 		txtSpeciesName = new JTextField();
+		txtSpeciesName.setToolTipText("Species Name");
 		txtSpeciesName.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtSpeciesName.setText("Species Name");
 		txtSpeciesName.setBounds(5, 39, 124, 20);
@@ -56,6 +57,7 @@ public class SearchPage extends JFrame {
 		txtSpeciesName.setColumns(10);
 		
 		txtActiveTime = new JTextField();
+		txtActiveTime.setToolTipText("Active Time");
 		txtActiveTime.setText("Active Time");
 		txtActiveTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtActiveTime.setColumns(10);
@@ -63,6 +65,7 @@ public class SearchPage extends JFrame {
 		contentPane.add(txtActiveTime);
 		
 		txtColor = new JTextField();
+		txtColor.setToolTipText("Color");
 		txtColor.setText("Color");
 		txtColor.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtColor.setColumns(10);
@@ -70,6 +73,7 @@ public class SearchPage extends JFrame {
 		contentPane.add(txtColor);
 		
 		txtType = new JTextField();
+		txtType.setToolTipText("Type");
 		txtType.setText("Type");
 		txtType.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		txtType.setColumns(10);
@@ -123,8 +127,10 @@ public class SearchPage extends JFrame {
 		JButton btnClearFields = new JButton("Clear Fields");
 		btnClearFields.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//clears txtfields
+				txtSpeciesName.setText("Species Name");
+				txtActiveTime.setText("Active Time");
+				txtColor.setText("Color");
+				txtType.setText("Type");
 				
 			}
 		});
