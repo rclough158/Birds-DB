@@ -14,7 +14,7 @@ public class Main {
 	// IF YOUR MYSQL USERNAME AND PASSWORD ARE DIFFERENT, THIS IS THE ONLY PLACE YOU NEED TO CHANGE IT
 	// If you have the birdwatchers database correctly set up, everything else should work
 	static public String user = "root";
-	static public String passwd = "newPassword";
+	static public String passwd = "1234";
 	
 	
 	public static void main(String[] args) throws Exception {
