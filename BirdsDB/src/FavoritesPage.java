@@ -1,8 +1,5 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,19 +10,10 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.LinkedList;
-import java.util.Stack;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JComboBox;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class FavoritesPage extends JFrame {
 
