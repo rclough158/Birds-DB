@@ -107,10 +107,12 @@ public class FavoritesPage extends JFrame {
 		JButton btnRemove = new JButton("Remove");
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String speciesCode = txtSpeciesId.getText();
 				if(txtSpeciesId.getText().equals("Species ID #") | txtSpeciesId.getText().length() == 0 ) {
 					JOptionPane.showMessageDialog(null, "Please insert a species code already in your favorites.");
-					
-					
+				}
+				else {
+					removeFav(Main.userID, speciesCode);
 				}
 			}
 		});
@@ -124,14 +126,30 @@ public class FavoritesPage extends JFrame {
 		 try{
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatchers", Main.user, Main.passwd);
-	            //PreparedStatement state = connect.prepareStatement("SELECT * FROM users WHERE user_name=? AND user_pass=?");
 	            Statement myStmt = connect.createStatement();
-	            //System.out.println(id + code);
-	            //System.out.println(Main.userID);
-				myStmt.executeUpdate("INSERT INTO Favorites(id_user, id_species)VALUES('"+id+"','"+code+"')");
+	            myStmt.executeUpdate("INSERT INTO Favorites(id_user, id_species)VALUES('"+id+"','"+code+"')");
 				JOptionPane.showMessageDialog(null, "Success!");
 				
 	            //PreparedStatement retrieve = connect.prepareStatement("SELECT * FROM favorites");
+	           
+	         
+	        } catch(Exception e){
+	            e.printStackTrace();
+	            JOptionPane.showMessageDialog(null, "Unable to insert species into favorites.");
+				
+	            //System.out.println("Unable to insert species into favorites table.");
+	        }
+		
+	}
+	private void removeFav(int id, String code) {
+		
+		 try{
+	            Class.forName("com.mysql.cj.jdbc.Driver");
+	            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatchers", Main.user, Main.passwd);
+	            Statement myStmt = connect.createStatement();
+	            myStmt.executeUpdate("DELETE FROM Favorites WHERE id_user = "+id+" AND id_species = "+code);
+				JOptionPane.showMessageDialog(null, "Success!");
+				
 	           
 	         
 	        } catch(Exception e){
