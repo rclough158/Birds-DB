@@ -28,7 +28,7 @@ public class Main {
 					
 					defPage = new DefaultPage(); // 1
 					serPage = new SearchPage(); // 2
-					favPage = new FavoritesPage(); // 3
+					//favPage = new FavoritesPage(); // 3
 					addPage = new AddDataPage(); // 4
 					nLogPage = new NewLogin(); // 5
 					
@@ -54,6 +54,7 @@ public class Main {
 			serPage.setVisible(true);
 			break;
 		case 3:
+			favPage = new FavoritesPage();
 			favPage.setVisible(true);
 			break;
 		case 4:

@@ -2,9 +2,11 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -14,11 +16,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.Stack;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FavoritesPage extends JFrame {
 
@@ -46,6 +53,8 @@ public class FavoritesPage extends JFrame {
 	 * Create the frame.
 	 */
 	public FavoritesPage() {
+	
+		 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -53,7 +62,10 @@ public class FavoritesPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		table = new JTable();
+		//		TABLE TO DISPLAY BIRD FAVES		//
+	    DefaultTableModel tableModel = displayFaves();
+		
+		JTable table = new JTable(tableModel);
 		table.setBounds(136, 40, 268, 161);
 		contentPane.add(table);
 		
@@ -129,16 +141,13 @@ public class FavoritesPage extends JFrame {
 	            Statement myStmt = connect.createStatement();
 	            myStmt.executeUpdate("INSERT INTO Favorites(id_user, id_species)VALUES('"+id+"','"+code+"')");
 				JOptionPane.showMessageDialog(null, "Success!");
-				
-	            //PreparedStatement retrieve = connect.prepareStatement("SELECT * FROM favorites");
-	           
+				Main.SwitchWindows(3);
+				setVisible(false);
 	         
 	        } catch(Exception e){
 	            e.printStackTrace();
 	            JOptionPane.showMessageDialog(null, "Unable to insert species into favorites.");
-				
-	            //System.out.println("Unable to insert species into favorites table.");
-	        }
+				  }
 		
 	}
 	private void removeFav(int id, String code) {
@@ -149,15 +158,50 @@ public class FavoritesPage extends JFrame {
 	            Statement myStmt = connect.createStatement();
 	            myStmt.executeUpdate("DELETE FROM Favorites WHERE id_user = "+id+" AND id_species = "+code);
 				JOptionPane.showMessageDialog(null, "Success!");
-				
+				Main.SwitchWindows(3);
+				setVisible(false);
 	           
 	         
 	        } catch(Exception e){
 	            e.printStackTrace();
-	            JOptionPane.showMessageDialog(null, "Unable to insert species into favorites.");
+	            JOptionPane.showMessageDialog(null, "Unable to remove species from favorites.");
 				
-	            //System.out.println("Unable to insert species into favorites table.");
 	        }
 		
 	}
-}
+	
+	
+	private DefaultTableModel displayFaves() {
+		String[] columns = {"ID", "Species Name"};
+		DefaultTableModel tableModel = new DefaultTableModel(columns, 0);
+		  
+		 try{
+			 
+			 
+	            Class.forName("com.mysql.cj.jdbc.Driver");
+	            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatchers", Main.user, Main.passwd);
+	            Statement myStmt = (Statement) connect.createStatement();
+	            String query = "select * from bird_species where id_species IN "
+	            		+ "(select id_species from favorites where id_user = "
+	            		+ Main.userID + ")";
+	            		
+	            ResultSet rs = myStmt.executeQuery(query);
+	            rs.beforeFirst();
+	           while (rs.next()) {
+	                String id_species = (String)rs.getString("id_species");
+	                String species_common_name = (String)rs.getString("SPECIES_COMMON_NAME");
+	              
+	                String[] data = {id_species, species_common_name};
+	             	tableModel.addRow(data);
+	            }
+	          
+	        } catch(Exception e){
+	            e.printStackTrace();
+	            System.out.println("Bypassed.");
+	        }
+		 
+		return tableModel;
+	
+		 }
+	}
+
