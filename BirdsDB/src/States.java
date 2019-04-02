@@ -137,7 +137,7 @@ public class States extends JFrame {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Species_Common_Name", "State_Initials", "Season"}));
-		comboBox.setBounds(5, 56, 121, 20);
+		comboBox.setBounds(5, 25, 121, 20);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String speciesAttr = (String)comboBox.getSelectedItem();
@@ -161,14 +161,19 @@ public class States extends JFrame {
 		
 		contentPane.add(table);
 		
-		
-		Label label = new Label("Bird Watchers");
-		label.setBounds(5, 0, 121, 31);
-		contentPane.add(label);
-		
 		JLabel lblSortBy = new JLabel("Sort by:");
-		lblSortBy.setBounds(5, 37, 46, 14);
+		lblSortBy.setBounds(5, 11, 46, 14);
 		contentPane.add(lblSortBy);
+		
+		JButton btnSortBySpecies = new JButton("Species List");
+		btnSortBySpecies.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.SwitchWindows(1);
+	            setVisible(false);
+			}
+		});
+		btnSortBySpecies.setBounds(3, 50, 107, 23);
+		contentPane.add(btnSortBySpecies);
 		
 		
 		
