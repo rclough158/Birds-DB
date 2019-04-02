@@ -142,6 +142,9 @@ public class Login extends JFrame {
             ResultSet test = retrieve.executeQuery();
             while (test.next()) {
             	Main.userID = test.getInt(1); //CHECK IF THIS WORKS
+            	//System.out.println("This is our test string");
+            	//System.out.println(test.getInt(1));
+            	//System.out.println(Main.userID);
             }
             
             if(result.next()){
