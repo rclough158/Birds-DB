@@ -62,7 +62,7 @@ public class Login extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(172, 109, 63, 25);
+		btnLogin.setBounds(110, 109, 187, 25);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtUsername.getText().length() ==0 /*&& passwordField.getPassword().length() == 0 */){
@@ -94,7 +94,7 @@ public class Login extends JFrame {
 		contentPane.add(btnLogin);
 		
 		JButton btnContinueWithoutLogin = new JButton("Continue without login");
-		btnContinueWithoutLogin.setBounds(126, 134, 155, 25);
+		btnContinueWithoutLogin.setBounds(110, 134, 187, 25);
 		btnContinueWithoutLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -117,7 +117,7 @@ public class Login extends JFrame {
 	            setVisible(false);
 			}
 		});
-		btnCreateNewLogin.setBounds(138, 159, 131, 25);
+		btnCreateNewLogin.setBounds(110, 159, 187, 25);
 		btnCreateNewLogin.setFont(new Font("Dialog", Font.PLAIN, 12));
 		contentPane.add(btnCreateNewLogin);
 	}
@@ -142,11 +142,24 @@ public class Login extends JFrame {
             ResultSet test = retrieve.executeQuery();
             while (test.next()) {
             	Main.userID = test.getInt(1); //CHECK IF THIS WORKS
+            	Main.adminStatus = test.getInt(1);
             	//System.out.println("This is our test string");
             	//System.out.println(test.getInt(1));
             	//System.out.println(Main.userID);
             }
             
+            /*
+            retrieve = connect.prepareStatement("SELECT id_user FROM users WHERE user_name=?");
+            retrieve.setString(1, uName);
+            
+            test = retrieve.executeQuery();
+            while (test.next()) {
+            	Main.userID = test.getInt(1); //CHECK IF THIS WORKS
+            	Main.adminStatus = test.getInt(1);
+            	//System.out.println("This is our test string");
+            	//System.out.println(test.getInt(1));
+            	//System.out.println(Main.userID);
+            }*/
             if(result.next()){
                 return true;
             } else {
