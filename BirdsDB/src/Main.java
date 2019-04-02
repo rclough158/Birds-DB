@@ -7,9 +7,11 @@ public class Main {
 	static FavoritesPage favPage; // 3
 	static AddDataPage addPage; // 4
 	static NewLogin nLogPage;
+	static States statePage;
 	
 	static Boolean loggedIn;
 	static int userID;
+	static int adminStatus;
 	
 	// IF YOUR MYSQL USERNAME AND PASSWORD ARE DIFFERENT, THIS IS THE ONLY PLACE YOU NEED TO CHANGE IT
 	// If you have the birdwatchers database correctly set up, everything else should work
@@ -26,7 +28,7 @@ public class Main {
 					frame = new Login(); // 0
 					frame.setVisible(true);
 					
-					defPage = new DefaultPage(); // 1
+					//defPage = new DefaultPage(); // 1
 					serPage = new SearchPage(); // 2
 					//favPage = new FavoritesPage(); // 3
 					addPage = new AddDataPage(); // 4
@@ -48,6 +50,7 @@ public class Main {
 			frame.setVisible(true);
 			break;
 		case 1:
+			defPage = new DefaultPage();
 			defPage.setVisible(true);
 			break;
 		case 2:
@@ -63,6 +66,10 @@ public class Main {
 		case 5:
 			nLogPage.setVisible(true);
 			break;
+		case 6:
+			statePage = new States();
+			statePage.setVisible(true);
+			
 			
 		}
 		

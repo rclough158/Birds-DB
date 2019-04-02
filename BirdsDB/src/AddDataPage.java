@@ -137,7 +137,7 @@ public class AddDataPage extends JFrame {
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		button_1.setBounds(317, 5, 87, 31);
+		button_1.setBounds(304, 5, 100, 31);
 		contentPane.add(button_1);
 		
 		JButton btnAddData = new JButton("Add Data");
