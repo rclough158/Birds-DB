@@ -86,7 +86,7 @@ public class NewLogin extends JFrame {
 			            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/birdwatchers", Main.user, Main.passwd);
 			            
 			            
-			            PreparedStatement state = connect.prepareStatement("INSERT INTO users (user_name, user_pass) VALUES (?, ?)");
+			            PreparedStatement state = connect.prepareStatement("INSERT INTO users (user_name, user_pass, admin_status) VALUES (?, ?, 0)");
 			            
 			            state.setString(1, userName); //these replace the "?" in the prepared statement
 			            state.setString(2, pWordArr);

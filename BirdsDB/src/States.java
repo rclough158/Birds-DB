@@ -168,8 +168,9 @@ public class States extends JFrame {
 		JButton btnSortBySpecies = new JButton("Species List");
 		btnSortBySpecies.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.SwitchWindows(1);
+				Main.SwitchWindows(1); //switch to default table
 	            setVisible(false);
+				contentPane.revalidate();
 			}
 		});
 		btnSortBySpecies.setBounds(3, 50, 107, 23);
