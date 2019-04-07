@@ -104,11 +104,11 @@ public class DefaultPage extends JFrame {
 				
 				//only if LoggedIn = true
 				//go to Add Data Window
-				if(Main.loggedIn) {
+				if(Main.loggedIn && Main.adminStatus == 1) {
 					Main.SwitchWindows(4);
 		            setVisible(false);
 				} else {
-					JOptionPane.showMessageDialog(null, "Unavailable without login");	
+					JOptionPane.showMessageDialog(null, "Unavailable without login as Admin");	
 				}
 				
 			}
@@ -146,8 +146,9 @@ public class DefaultPage extends JFrame {
 				String speciesAttr = "SPECIES_"+(String)comboBox.getSelectedItem();
 				setAttribute(speciesAttr);
 				displaySpecies();
-				Main.SwitchWindows(1);
+				Main.SwitchWindows(1); //refresh default window
 	            setVisible(false);
+	           
 				
 			}
 		});
@@ -177,6 +178,7 @@ public class DefaultPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Main.SwitchWindows(6);
 	            setVisible(false);
+				
 			}
 		});
 		btnSearchByStates.setBounds(5, 56, 121, 23);

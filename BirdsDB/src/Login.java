@@ -142,24 +142,20 @@ public class Login extends JFrame {
             ResultSet test = retrieve.executeQuery();
             while (test.next()) {
             	Main.userID = test.getInt(1); //CHECK IF THIS WORKS
-            	Main.adminStatus = test.getInt(1);
-            	//System.out.println("This is our test string");
-            	//System.out.println(test.getInt(1));
-            	//System.out.println(Main.userID);
-            }
+              }
             
-            /*
-            retrieve = connect.prepareStatement("SELECT id_user FROM users WHERE user_name=?");
+            
+            retrieve = connect.prepareStatement("SELECT admin_status FROM users WHERE user_name=?");
             retrieve.setString(1, uName);
             
             test = retrieve.executeQuery();
             while (test.next()) {
-            	Main.userID = test.getInt(1); //CHECK IF THIS WORKS
             	Main.adminStatus = test.getInt(1);
             	//System.out.println("This is our test string");
             	//System.out.println(test.getInt(1));
             	//System.out.println(Main.userID);
-            }*/
+            	//System.out.println(Main.adminStatus);
+            }
             if(result.next()){
                 return true;
             } else {

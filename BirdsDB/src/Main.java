@@ -6,8 +6,8 @@ public class Main {
 	static SearchPage serPage; // 2
 	static FavoritesPage favPage; // 3
 	static AddDataPage addPage; // 4
-	static NewLogin nLogPage;
-	static States statePage;
+	static NewLogin nLogPage; //5
+	static States statePage; //6
 	
 	static Boolean loggedIn;
 	static int userID;
