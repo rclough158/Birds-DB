@@ -29,7 +29,7 @@ public class Main {
 					frame.setVisible(true);
 					
 					//defPage = new DefaultPage(); // 1
-					serPage = new SearchPage(); // 2
+					//serPage = new SearchPage(); // 2
 					//favPage = new FavoritesPage(); // 3
 					addPage = new AddDataPage(); // 4
 					nLogPage = new NewLogin(); // 5
@@ -54,6 +54,7 @@ public class Main {
 			defPage.setVisible(true);
 			break;
 		case 2:
+			serPage = new SearchPage();
 			serPage.setVisible(true);
 			break;
 		case 3:
